@@ -1,12 +1,18 @@
 echo Do you want to commit all documents or just one?
-echo Type "1" for one and "all" for all:
+echo Type '1' for one and 'all' for all:
 read $NumberofCommit
-if test $NumberofCommit = "1"
+if test $NumberofCommit -n 1
 	then
 		echo What is the Name of the File you want to commit?
 		read $Filename
-elif test $NumberofCommit = "all"
+		echo Committing the File $Filename ...
+		git commit -m "This File was autocommited by a script" $Filename
+		echo Finished!
+elif test $NumberofCommit -n all
 	then
 		echo Commiting all Files...
-		git commit -m "This File was autocommited by a script"
+		git commmit -m "This File was autocommited by a script" *
+		echo Finished!
+else
+	echo Sorry, invalid input
 fi
